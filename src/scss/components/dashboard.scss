@@ -1,0 +1,48 @@
+.dashboard {
+  .dashboard__header {
+    @include center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: #252525;
+  }
+  .dashboard__create {
+    margin-top: 84px;
+    padding: 8px;
+    .item {
+      img {
+        width: 160px;
+        border: 2px solid $primary;
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+  .dashboard__table {
+    margin-top: 2rem;
+    .dashboard__table__header {
+      @include spacebetween;
+      margin-bottom: 1rem;
+    }
+    .dashboard__table__list {
+      .item {
+        @include spacebetween;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover {
+          background: $primary;
+        }
+        .title {
+          a {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}

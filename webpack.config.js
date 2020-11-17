@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
 
 const prod = process.env.NODE_ENV === 'production'
 const dev = !prod
@@ -29,7 +28,7 @@ const JSloaders = () => {
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: ['@babel/polyfill', './index.js'],
+  entry: './index.js',
   output: {
     filename: fileExt('js'),
     path: path.resolve(__dirname, 'dist'),
@@ -37,7 +36,7 @@ module.exports = {
   devtool: dev ? 'inline-source-map' : false,
   devServer: {
     port: 3000,
-    hot: dev
+    hot: false
   },
   resolve: {
     extensions: ['.js', '.json'],
@@ -61,14 +60,15 @@ module.exports = {
           from: path.resolve(__dirname, 'src/favicon.ico'),
           to: path.resolve(__dirname, 'dist'),
         },
+        {
+          from: path.resolve(__dirname, 'src/assets/img'),
+          to: path.resolve(__dirname, 'dist/img'),
+        }
       ],
     }),
     new MiniCssExtractPlugin({
       filename: fileExt('css'),
     }),
-    new ESLintPlugin({
-      fix: true
-    })
   ],
   module: {
     rules: [

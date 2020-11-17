@@ -1,0 +1,35 @@
+.table {
+  margin-top: 134px;
+  width: 100%;
+  .row {
+    display: flex;
+    height: 24px;
+    .row-info {
+      @include center;
+      width: 44px;
+      border-right: 2px solid $border-color;
+      border-bottom: 2px solid $border-color;
+    }
+    .row-data {
+      display: flex;
+      .column {
+        @include center;
+        width: 120px;
+        border-right: 2px solid $border-color;
+        border-bottom: 2px solid $border-color;
+      }
+      .cell {
+        width: 120px;
+        border-right: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+        padding: 5px;
+        white-space: nowrap;
+        outline: none;
+        &.selected {
+          border: none;
+          outline: 2px solid $primary;
+        }
+      }
+    }
+  }
+}
