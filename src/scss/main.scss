@@ -1,5 +1,71 @@
-$red: red;
+$main: #333;
+@import '~normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Roboto:wght@300;400;500;700&display=swap');
+@import 'variables.scss';
+@import 'mixins.scss';
+@import 'components/header.scss';
+@import 'components/table.scss';
+@import 'components/dashboard.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  background: $red;
+  background: $main;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #fff;
+}
+
+.text-h1 {
+  font-size: 1.325rem!important;
+  line-height: 1.5rem;
+  letter-spacing: .0073529412em!important;
+}
+
+.text-h3 {
+  font-size: 1.125rem!important;
+  line-height: 1.3rem;
+  letter-spacing: .0073529412em!important;
+}
+
+.text-h5 {
+  font-size: 1rem!important;
+  line-height: 1.3rem;
+  letter-spacing: .0073529412em!important;
+}
+
+.subtitle {
+  font-size: 16px;
+}
+
+p, a {
+  font-size: 14px;
+}
+
+p {
+  font-weight: 300;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1140px;
+}
+
+
+.excel {
+  overflow-x: auto;
+  padding-bottom: 2px;
 }

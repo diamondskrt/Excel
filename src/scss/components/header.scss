@@ -1,0 +1,65 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #252525;
+  .header__bars {
+    .header__bars__appbar {
+      @include align-center;
+      justify-content: space-between;
+      height: 60px;
+      padding-left: 8px;
+      padding-right: 8px;
+      input {
+        padding: 2px 7px;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        font-size: 16px;
+        line-height: 22px;
+        outline: none;
+        &:hover {
+          border: 1px solid $primary;
+        }
+        &:focus {
+          border: 1px solid $primary;
+        }
+      }
+      .buttons {
+        display: flex;
+        .button {
+          @include button($primary);
+        }
+      }
+    }
+    .header__bars__toolbar {
+      @include align-center;
+      height: 40px;
+      border-top: 1px solid $border-color;
+      border-bottom: 1px solid $border-color;
+      .button {
+        @include button($primary);
+      }
+    }
+  }
+  .header__formula {
+    display: flex;
+    border-bottom: 2px solid $border-color;
+    height: 34px;
+    .info {
+      @include center;
+      font-size: 18px;
+      font-style: italic;
+      border-right: 1px solid $border-color;
+      width: 45px;
+      height: 100%;
+      opacity: 0.4;
+    }
+    .input {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      padding: 8px;
+    }
+  }
+}

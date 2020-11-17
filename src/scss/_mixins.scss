@@ -1,0 +1,41 @@
+@mixin button($color: $primary) {
+  position: relative;
+  height: 24px;
+  min-width: 24px;
+  padding: 3px;
+  text-align: center;
+  margin: 4px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 2px;
+  &:active {
+    i {
+      color: $color;
+    }
+  }
+  i {
+    font-size: 18px;
+    &:hover {
+      color: $color;
+    }
+    &:active {
+      color: $color;
+    }
+  }
+}
+
+@mixin align-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin spacebetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
