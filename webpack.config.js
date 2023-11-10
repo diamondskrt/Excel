@@ -35,7 +35,7 @@ module.exports = (_, argv) => {
   return {
     context: path.resolve(__dirname, 'src'),
     entry: {
-      main: './index.js',
+      main: './main.js',
     },
     output: {
       filename: isDev ? '[name].bundle.js' : '[name].[contenthash].bundle.js',
@@ -58,11 +58,16 @@ module.exports = (_, argv) => {
     module: {
       rules: [
         {
-          test: /\.s[ac]ss$/i,
+          test: /\.css$/,
           use: [
             MiniCssExtractPlugin.loader,
-            'css-loader',
-            'sass-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+              },
+            },
+            'postcss-loader',
           ],
         },
         {
