@@ -1,4 +1,4 @@
-import './scss/index.scss';
+import './css/main.css';
 
 const component = () => {
   const element = document.createElement('div');
