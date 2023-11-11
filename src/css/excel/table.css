@@ -1,0 +1,35 @@
+.excel__table {
+  @apply relative overflow-x-auto mt-[137.6px]
+}
+
+table {
+  @apply text-sm text-left rtl:text-right  dark:text-zinc-400
+}
+
+th {
+  @apply text-zinc-700 dark:text-zinc-400 uppercase bg-zinc-50 dark:bg-zinc-800 py-1
+}
+
+thead th {
+  @apply text-sm text-center
+}
+
+thead th:first-child {
+  @apply min-w-[40px] border dark:border-zinc-400
+}
+
+thead th:not(:first-child) {
+  @apply min-w-[80px] border dark:border-zinc-400
+}
+
+tbody th {
+  @apply text-xs text-center border dark:border-zinc-400
+}
+
+tbody td {
+  @apply text-xs py-1 border dark:border-zinc-400
+}
+
+tbody td.selected {
+  @apply border-2 border-blue-500
+}
