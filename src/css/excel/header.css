@@ -1,0 +1,31 @@
+.excel__header {
+  @apply fixed inset-x-0 top-0 left-0 shadow dark:shadow-zinc-800 p-2
+}
+
+.excel__header-appbar {
+  @apply flex justify-between py-1
+}
+
+.appbar-input {
+  @apply w-[300px]
+}
+
+.excel__header-toolbar {
+  @apply py-1
+}
+
+.toolbar-actions {
+  @apply flex py-1 px-4 bg-blue-50 dark:bg-zinc-800 rounded-3xl
+}
+
+.excel__header-formula {
+  @apply flex items-center
+}
+
+.formula-function {
+  @apply flex items-center px-2 border-r border-gray-300 dark:border-zinc-700
+}
+
+.formula-function i {
+  @apply text-xl leading-none
+}

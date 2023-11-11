@@ -1,9 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './excel/header.css';
+@import './excel/table.css';
+@import './dashboard.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+  @apply w-1 h-1
+}
+::-webkit-scrollbar-track {
+  @apply rounded bg-zinc-700
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded bg-blue-500
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  /* @apply bg-zinc-950 text-white; */
+}
+
+input {
+  outline: none;
+}
+
+.input {
+  @apply block w-full text-gray-900 rounded dark:bg-zinc-950 dark:text-white
+}
+
+.input:not(.border-none) {
+  @apply border border-gray-300 focus:border-blue-500 dark:border-zinc-700 dark:focus:border-blue-500
+}
+
+.input:not(.input-sm) {
+  @apply p-1.5 text-sm
+}
+
+.input.input-sm {
+  @apply p-1 text-xs
+}
+
+.btn {
+  @apply text-gray-700 font-medium text-center inline-flex items-center dark:text-white 
+}
+
+.btn:not(.btn-icon) {
+  @apply rounded border border-gray-700 dark:border-gray-500 hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-500 dark:hover:text-blue-500 active:opacity-70 dark:active:opacity-70
+}
+
+.btn:not(.btn-sm):not(.btn-icon) {
+  @apply py-1.5 px-2.5 text-sm 
+}
+
+.btn.btn-sm:not(.btn-icon) {
+  @apply p-1
+}
+
+/* start btn icon */
+.btn.btn-icon {
+  @apply rounded hover:bg-gray-200 dark:hover:bg-zinc-700 active:opacity-70 dark:active:opacity-70
+}
+
+.btn.btn-icon:not(.btn-sm) {
+  @apply p-1.5
+}
+
+.btn.btn-icon.btn-sm {
+  @apply p-1
+}
+/* end btn icon */
+
+/* start btn icon mdi */
+.btn.btn-icon:not(.btn-sm) i {
+  @apply text-xl leading-none
+}
+
+.btn.btn-icon.btn-sm i {
+  @apply text-lg leading-none
+}
+/* end btn icon mdi */
