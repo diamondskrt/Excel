@@ -15,19 +15,19 @@ thead th {
 }
 
 thead th:first-child {
-  @apply min-w-[40px] border dark:border-zinc-400
+  @apply min-w-[40px] border dark:border-zinc-600
 }
 
 thead th:not(:first-child) {
-  @apply min-w-[80px] border dark:border-zinc-400
+  @apply min-w-[80px] border dark:border-zinc-600
 }
 
 tbody th {
-  @apply text-xs text-center border dark:border-zinc-400
+  @apply text-xs text-center border dark:border-zinc-600
 }
 
 tbody td {
-  @apply text-xs py-1 border dark:border-zinc-400
+  @apply text-xs py-1 border dark:border-zinc-600 p-1
 }
 
 tbody td.selected {
