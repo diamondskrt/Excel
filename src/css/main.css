@@ -13,13 +13,13 @@
 }
 
 ::-webkit-scrollbar {
-  @apply w-1 h-1
+  @apply w-1.5 h-1.5
 }
 ::-webkit-scrollbar-track {
-  @apply rounded bg-zinc-700
+  @apply rounded bg-zinc-600
 }
 ::-webkit-scrollbar-thumb {
-  @apply rounded bg-blue-500
+  @apply rounded bg-zinc-400
 }
 
 body {
@@ -32,7 +32,7 @@ input {
 }
 
 .input {
-  @apply block w-full text-gray-900 rounded dark:bg-zinc-950 dark:text-white
+  @apply block w-full text-gray-900 rounded dark:bg-zinc-900 dark:text-white
 }
 
 .input:not(.border-none) {

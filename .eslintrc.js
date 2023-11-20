@@ -12,4 +12,10 @@ module.exports = {
     node: true,
     es2021: true,
   },
+  rules: {
+    'import/prefer-default-export': 'off',
+  },
+  settings: {
+    'import/resolver': 'webpack',
+  },
 };
