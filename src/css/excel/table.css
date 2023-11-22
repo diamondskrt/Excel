@@ -7,7 +7,7 @@ table {
 }
 
 th {
-  @apply text-zinc-700 dark:text-zinc-400 uppercase bg-zinc-50 dark:bg-zinc-800 py-1
+  @apply relative text-zinc-700 dark:text-zinc-400 uppercase bg-zinc-50 dark:bg-zinc-800 select-none
 }
 
 thead th {
@@ -19,11 +19,31 @@ thead th:first-child {
 }
 
 thead th:not(:first-child) {
-  @apply min-w-[80px] border dark:border-zinc-600
+  @apply border dark:border-zinc-600
 }
 
 tbody th {
   @apply text-xs text-center border dark:border-zinc-600
+}
+
+th .resizer {
+  @apply absolute bg-blue-500 opacity-0 hover:opacity-100 active:opacity-100 z-10
+}
+
+thead th:not(:first-child) .table-header-cell {
+  @apply min-w-[80px] p-1
+}
+
+thead th:not(:first-child) .resizer {
+  @apply w-1 h-full top-0 right-0 cursor-col-resize
+}
+
+tbody th .resizer {
+  @apply h-1 w-full bottom-0 left-0 cursor-row-resize
+}
+
+tbody th .table-header-cell {
+  @apply min-h-[26px] p-1 flex items-center justify-center
 }
 
 tbody td {

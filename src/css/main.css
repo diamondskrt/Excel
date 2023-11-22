@@ -16,10 +16,10 @@
   @apply w-1.5 h-1.5
 }
 ::-webkit-scrollbar-track {
-  @apply rounded bg-zinc-600
+  @apply bg-zinc-600
 }
 ::-webkit-scrollbar-thumb {
-  @apply rounded bg-zinc-400
+  @apply bg-zinc-400
 }
 
 body {
