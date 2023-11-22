@@ -11,26 +11,31 @@ const createItem = (data, callback) => new Array(data).fill('')
   .map((_, index) => callback(index))
   .join('');
 
-const getTh = (content) => (content
-  ? `<th>${content}</th>`
+const getTh = (content, thType) => (content
+  ? `<th>
+      <div class="table-header-cell" data-type="resizable">
+        ${content}
+        <div class="resizer" data-resize="${thType}" />
+      </div>
+    </th>`
   : '<th></th>');
 
 const getTd = () => `
-  <td></td>
+  <td contenteditable></td>
 `;
 
 const createTd = () => createItem(cols, () => getTd());
 
-const createTh = () => createItem(cols, (index) => getTh(getChar(index)));
+const createTh = (thType) => createItem(cols, (index) => getTh(getChar(index), thType));
 
-const getTableBodyRow = (index) => `
+const getTableBodyTr = (index) => `
   <tr>
-    ${getTh(index)}
+    ${getTh(index, 'row')}
     ${createTd(cols)}
   </tr>
 `;
 
-const createTableBodyRows = (rows) => createItem(rows, (index) => getTableBodyRow(index + 1));
+const createTableBodyTr = (rows) => createItem(rows, (index) => getTableBodyTr(index + 1));
 
 export const createTable = (options) => {
   const rows = options?.rows;
@@ -39,23 +44,21 @@ export const createTable = (options) => {
     <thead>
       <tr>
         ${getTh()}
-        ${createTh()}
+        ${createTh('col')}
       </tr>
     </thead>
   `;
 
   const getTableBody = () => `
     <tbody>
-      ${createTableBodyRows(rows)}
+      ${createTableBodyTr(rows)}
     </tbody>
   `;
 
   return `
-    <main class="excel__table">
-      <table>
-        ${getTableHead()}
-        ${getTableBody()}
-      </table>
-    </main>
+    <table>
+      ${getTableHead()}
+      ${getTableBody()}
+    </table>
   `;
 };

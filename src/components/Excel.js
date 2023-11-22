@@ -1,4 +1,4 @@
-import { dom } from '@/core/dom';
+import { dom } from '@/core';
 import { createElement } from '@/utils/dom';
 import { Header } from './Header';
 import { Table } from './table';
@@ -8,8 +8,10 @@ class Excel {
     this.root = createElement('div', 'excel');
     this.components = options?.components
       .map((Component) => {
-        const el = dom(Component.selector);
-        const component = new Component(el);
+        const createdComponent = dom(createElement(Component.wrapper.tag, Component.wrapper.class));
+        const component = new Component(createdComponent);
+        createdComponent.el.innerHTML = component.toHTML();
+        this.root.append(createdComponent.el);
 
         return component;
       }) || [];
@@ -21,7 +23,6 @@ class Excel {
     el.append(this.root);
 
     this.components.forEach((component) => {
-      this.root.insertAdjacentHTML('beforeend', component.toHTML());
       component.init();
     });
   }

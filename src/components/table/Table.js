@@ -1,19 +1,27 @@
 import { CreateComponent } from '@/core';
 import { createTable } from './useTable';
+import { useResize } from './useResize';
 
 export class Table extends CreateComponent {
   constructor(root) {
     super(root, {
       name: 'ExcelTable',
-      listeners: ['input'],
+      listeners: ['mousedown'],
     });
   }
 
-  static selector = '.excel__table';
+  static wrapper = {
+    class: 'excel__table',
+    tag: 'main',
+  };
 
   toHTML() {
-    const options = { rows: 20 };
+    const options = { rows: 100 };
 
     return createTable(options);
+  }
+
+  mousedown(event) {
+    useResize(event);
   }
 }

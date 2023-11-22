@@ -1,16 +1,24 @@
 class Dom {
   constructor(selector) {
-    this.selector = selector;
+    this.el = selector === 'string' ? document.querySelector(selector) : selector;
   }
 
   on(event, callback) {
-    const el = document.querySelector(this.selector);
-    el.addEventListener(event, callback);
+    this.el.addEventListener(event, callback);
   }
 
   off(event, callback) {
-    const el = document.querySelector(this.selector);
-    el.removeEventListener(event, callback);
+    this.el.removeEventListener(event, callback);
+  }
+
+  getCoords() {
+    return this.el.getBoundingClientRect();
+  }
+
+  css(styles) {
+    Object.keys(styles).forEach((key) => {
+      this.el.style[key] = styles[key];
+    });
   }
 }
 
