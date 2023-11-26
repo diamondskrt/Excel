@@ -1,10 +1,6 @@
 import { dom } from '@/core';
 
-export const useResize = (event) => {
-  const resizer = dom(event.target);
-  const { dataset } = resizer.el;
-  if (!dataset?.resize) return;
-
+export const useResize = (resizer, dataset) => {
   const isCol = dataset.resize === 'col';
   const parent = dom(resizer.el.closest('[data-type="resizable"]'));
   const coords = parent.getCoords();

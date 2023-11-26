@@ -1,10 +1,11 @@
 import { CreateComponent } from '@/core';
 
 export class Header extends CreateComponent {
-  constructor(root) {
+  constructor(root, options) {
     super(root, {
       name: 'ExcelHeader',
-      listeners: ['input', 'click'],
+      listeners: ['input', 'keydown'],
+      ...options,
     });
   }
 
@@ -13,11 +14,25 @@ export class Header extends CreateComponent {
     tag: 'header',
   };
 
+  init() {
+    super.init();
+
+    const formula = this.root.el.querySelector('.formula-input');
+
+    this.subscribe('table:select-cell', (selectedCell) => {
+      formula.value = selectedCell.textContent;
+    });
+
+    this.subscribe('table:input', (text) => {
+      formula.value = text;
+    });
+  }
+
   toHTML() {
     return `
       <div class="excel__header-appbar">
         <div class="appbar-input">
-            <input type="text" class="input" placeholder="Новая таблица">
+            <input type="text" class="input appbar-input" placeholder="Новая таблица">
         </div>
         <div class="appbar-actions">
           <button type="button" class="btn btn-icon">
@@ -72,16 +87,34 @@ export class Header extends CreateComponent {
             function
           </i>
         </div>
-        <input type="text" class="input border-none">
+        <input type="text" class="input formula-input border-none">
       </div>
     `;
   }
 
   input(event) {
-    console.log('input', event);
+    const text = event.target.value.trim();
+
+    const isFormulaInput = event.target.classList.contains('formula-input');
+
+    if (isFormulaInput) {
+      this.emit('formula:input', text);
+    }
   }
 
-  click(event) {
-    console.log('click', event);
+  keydown(event) {
+    const isFormulaInput = event.target.classList.contains('formula-input');
+
+    const keys = ['Enter', 'Tab'];
+
+    if (isFormulaInput && keys.includes(event.key)) {
+      event.preventDefault();
+
+      this.emit('formula:enter');
+    }
+  }
+
+  destroy() {
+    super.destroy();
   }
 }

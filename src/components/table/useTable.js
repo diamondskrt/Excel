@@ -1,7 +1,9 @@
-const charCodes = {
+export const charCodes = {
   A: 65,
   Z: 90,
 };
+
+export const tableRows = 100;
 
 const cols = charCodes.Z - charCodes.A + 1;
 
@@ -20,26 +22,28 @@ const getTh = (content, thType) => (content
     </th>`
   : '<th></th>');
 
-const getTd = () => `
-  <td contenteditable></td>
-`;
+const getTd = (index, rowIndex) => {
+  const char = getChar(index);
 
-const createTd = () => createItem(cols, () => getTd());
+  return `
+    <td contenteditable data-cell-id="${char + rowIndex}"></td>
+  `;
+};
+
+const createTd = (rowIndex) => createItem(cols, (index) => getTd(index, rowIndex));
 
 const createTh = (thType) => createItem(cols, (index) => getTh(getChar(index), thType));
 
 const getTableBodyTr = (index) => `
   <tr>
     ${getTh(index, 'row')}
-    ${createTd(cols)}
+    ${createTd(index)}
   </tr>
 `;
 
 const createTableBodyTr = (rows) => createItem(rows, (index) => getTableBodyTr(index + 1));
 
-export const createTable = (options) => {
-  const rows = options?.rows;
-
+export const createTable = () => {
   const getTableHead = () => `
     <thead>
       <tr>
@@ -51,7 +55,7 @@ export const createTable = (options) => {
 
   const getTableBody = () => `
     <tbody>
-      ${createTableBodyTr(rows)}
+      ${createTableBodyTr(tableRows)}
     </tbody>
   `;
 

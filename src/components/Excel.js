@@ -1,15 +1,22 @@
-import { dom } from '@/core';
-import { createElement } from '@/utils/dom';
+import { dom, Emitter } from '@/core';
+import { createElement } from '@/utils';
 import { Header } from './Header';
 import { Table } from './table';
 
 class Excel {
   constructor(options) {
     this.root = createElement('div', 'excel');
+
+    this.emmiter = new Emitter();
+
     this.components = options?.components
       .map((Component) => {
-        const createdComponent = dom(createElement(Component.wrapper.tag, Component.wrapper.class));
-        const component = new Component(createdComponent);
+        const createdElement = createElement(Component.wrapper.tag, Component.wrapper.class);
+        const createdComponent = dom(createdElement);
+        const component = new Component(createdComponent, {
+          emmiter: this.emmiter,
+        });
+
         createdComponent.el.innerHTML = component.toHTML();
         this.root.append(createdComponent.el);
 
@@ -25,6 +32,10 @@ class Excel {
     this.components.forEach((component) => {
       component.init();
     });
+  }
+
+  unmount() {
+    this.components.forEach((component) => component.destroy());
   }
 }
 

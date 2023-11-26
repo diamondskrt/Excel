@@ -3,7 +3,11 @@
 }
 
 table {
-  @apply text-sm text-left rtl:text-right  dark:text-zinc-400
+  @apply text-sm text-left rtl:text-right dark:text-zinc-400
+}
+
+th, td {
+  @apply border dark:border-zinc-600
 }
 
 th {
@@ -15,15 +19,11 @@ thead th {
 }
 
 thead th:first-child {
-  @apply min-w-[40px] border dark:border-zinc-600
-}
-
-thead th:not(:first-child) {
-  @apply border dark:border-zinc-600
+  @apply min-w-[40px]
 }
 
 tbody th {
-  @apply text-xs text-center border dark:border-zinc-600
+  @apply text-xs text-center
 }
 
 th .resizer {
@@ -31,7 +31,7 @@ th .resizer {
 }
 
 thead th:not(:first-child) .table-header-cell {
-  @apply min-w-[80px] p-1
+  @apply min-w-[100px] p-1
 }
 
 thead th:not(:first-child) .resizer {
@@ -43,11 +43,11 @@ tbody th .resizer {
 }
 
 tbody th .table-header-cell {
-  @apply min-h-[26px] p-1 flex items-center justify-center
+  @apply min-h-[24px] p-1 flex items-center justify-center
 }
 
 tbody td {
-  @apply text-xs py-1 border dark:border-zinc-600 p-1
+  @apply text-xs py-1 p-1 outline-none
 }
 
 tbody td.selected {
