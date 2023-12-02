@@ -1,5 +1,5 @@
 .excel__header {
-  @apply fixed inset-x-0 top-0 left-0 shadow dark:shadow-zinc-800 bg-white dark:bg-zinc-900 p-2 z-20
+  @apply sticky top-0 shadow dark:shadow-zinc-800 bg-white dark:bg-zinc-900 p-2 z-20
 }
 
 .excel__header-appbar {
@@ -7,7 +7,7 @@
 }
 
 .appbar-input {
-  @apply w-[300px]
+  @apply w-[300px] outline-none rounded border border-transparent focus:border-zinc-400 px-2 py-0.5
 }
 
 .excel__header-toolbar {
@@ -15,7 +15,7 @@
 }
 
 .toolbar-actions {
-  @apply flex py-1 px-4 bg-blue-50 dark:bg-zinc-800 rounded-3xl
+  @apply flex py-1 px-4 gap-1 bg-blue-50 dark:bg-zinc-800 rounded-3xl
 }
 
 .excel__header-formula {
@@ -23,7 +23,7 @@
 }
 
 .formula-function {
-  @apply flex items-center px-2 border-r border-gray-300 dark:border-zinc-700
+  @apply flex items-center px-2 border-r border-zinc-300 dark:border-zinc-700
 }
 
 .formula-function i {

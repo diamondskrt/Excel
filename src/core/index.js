@@ -1,3 +1,6 @@
-export { CreateComponent } from './createComponent';
+export { StatelessComponent } from './statelessComponent';
+export { Component } from './сomponent';
+export { createStore } from './store';
 export { dom } from './dom';
-export { Emitter } from './emmiter';
+export { createEmitter } from './emmiter';
+export { createStoreSubscriber } from './storeSubscriber';

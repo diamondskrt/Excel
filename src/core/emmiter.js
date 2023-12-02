@@ -1,4 +1,4 @@
-export class Emitter {
+class Emitter {
   constructor() {
     this.listeners = {};
   }
@@ -22,3 +22,5 @@ export class Emitter {
     };
   }
 }
+
+export const createEmitter = () => new Emitter();

@@ -1,5 +1,5 @@
 .excel__table {
-  @apply relative overflow-x-auto mt-[137.6px]
+  @apply relative overflow-x-auto
 }
 
 table {

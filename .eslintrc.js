@@ -14,6 +14,7 @@ module.exports = {
   },
   rules: {
     'import/prefer-default-export': 'off',
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
   },
   settings: {
     'import/resolver': 'webpack',
