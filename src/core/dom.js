@@ -1,3 +1,5 @@
+import { addCss } from '@/utils';
+
 class Dom {
   constructor(selector) {
     this.el = selector === 'string' ? document.querySelector(selector) : selector;
@@ -16,9 +18,7 @@ class Dom {
   }
 
   css(styles) {
-    Object.keys(styles).forEach((key) => {
-      this.el.style[key] = styles[key];
-    });
+    addCss(this.el, styles);
   }
 }
 

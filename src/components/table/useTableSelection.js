@@ -1,4 +1,4 @@
-import { range } from '@/utils';
+import { range, addCss } from '@/utils';
 import { charCodes, tableRows } from './useTable';
 
 let group = [];
@@ -23,6 +23,8 @@ export const selectGroup = (selectedGroup) => {
   group.forEach((component) => component.classList.add('selected'));
 };
 
+export const getCurrent = () => current;
+
 const getCellData = (element) => {
   const col = element.dataset.cellId.charAt(0).charCodeAt();
   const row = Number(element.dataset.cellId.slice(1));
@@ -30,13 +32,21 @@ const getCellData = (element) => {
   return { col, row };
 };
 
+export const setCurrentFocus = () => {
+  current.focus();
+};
+
 export const setCurrentText = (text) => {
   current.textContent = text;
 };
 
-export const setCurrentFocus = () => {
-  current.focus();
+export const setCurrentStyles = (styles) => {
+  group.forEach((component) => {
+    addCss(component, styles);
+  });
 };
+
+export const getGroupIds = () => group.map((component) => component.dataset.cellId);
 
 const cols = (element) => range(getCellData(current).col, getCellData(element).col);
 const rows = (element) => range(getCellData(current).row, getCellData(element).row);

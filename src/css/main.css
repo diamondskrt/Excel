@@ -65,7 +65,15 @@ input {
 
 /* start btn icon */
 .btn.btn-icon {
-  @apply rounded hover:bg-gray-200 dark:hover:bg-zinc-700 active:opacity-70 dark:active:opacity-70
+  @apply rounded active:opacity-70 dark:active:opacity-70
+}
+
+.btn.btn-icon:not(.active) {
+  @apply hover:bg-gray-200 dark:hover:bg-zinc-700
+}
+
+.btn.btn-icon.active {
+  @apply bg-blue-200 text-black
 }
 
 .btn.btn-icon:not(.btn-sm) {

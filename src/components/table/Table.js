@@ -1,11 +1,20 @@
-import { CreateComponent, dom } from '@/core';
+import { Component, dom } from '@/core';
+import { actions } from '@/store/constants';
 import { createTable } from './useTable';
 import {
-  select, selectGroup, getCells, getNextSelector, setCurrentText, setCurrentFocus,
+  select,
+  selectGroup,
+  getCells,
+  getNextSelector,
+  getCurrent,
+  setCurrentText,
+  setCurrentFocus,
+  getGroupIds,
+  setCurrentStyles,
 } from './useTableSelection';
 import { useResize } from './useResize';
 
-export class Table extends CreateComponent {
+export class Table extends Component {
   constructor(root, options) {
     super(root, {
       name: 'ExcelTable',
@@ -20,7 +29,8 @@ export class Table extends CreateComponent {
   };
 
   toHTML() {
-    return createTable();
+    const state = this.store.getState();
+    return createTable(state);
   }
 
   init() {
@@ -28,29 +38,76 @@ export class Table extends CreateComponent {
 
     const defaultSelectedCell = this.root.el.querySelector('[data-cell-id="A1"]');
 
-    select(defaultSelectedCell);
-    this.emit('table:select-cell', defaultSelectedCell);
+    this.selectCell(defaultSelectedCell);
 
-    this.subscribe('formula:input', (text) => {
-      setCurrentText(text);
+    this.subscribe('formula:input', (params) => {
+      setCurrentText(params.text);
+
+      const current = getCurrent();
+
+      const data = {
+        id: current.dataset.cellId,
+        params,
+      };
+
+      this.onStoreDispatch({ type: actions.cellInput, data });
     });
     this.subscribe('formula:enter', () => {
       setCurrentFocus();
+    });
+    this.subscribe('toolbar-btn:click', (styles) => {
+      const data = {
+        ids: getGroupIds(),
+        styles,
+      };
+
+      setCurrentStyles(styles);
+
+      this.onStoreDispatch({ type: actions.toolbarBtnClick, data });
+    });
+  }
+
+  selectCell(cell) {
+    select(cell);
+
+    this.emit('table:select-cell', cell);
+
+    const {
+      textAlign, fontWeight, fontStyle, textDecoration,
+    } = cell.style;
+
+    this.emit('table:set-cell-styles', {
+      textAlign, fontWeight, fontStyle, textDecoration,
     });
   }
 
   input(event) {
     const text = event.target.textContent.trim();
 
-    this.emit('table:input', text);
+    this.emit('table:input', event.target);
+
+    const data = {
+      id: event.target.dataset.cellId,
+      params: {
+        formula: '',
+        text,
+      },
+    };
+
+    this.onStoreDispatch({ type: actions.cellInput, data });
   }
 
-  mousedown(event) {
+  async mousedown(event) {
     const component = dom(event.target);
     const { dataset } = component.el;
 
     if (dataset?.resize) {
-      useResize(component, dataset);
+      try {
+        const data = await useResize(component, dataset);
+        this.onStoreDispatch({ type: actions.tableResize, data });
+      } catch (error) {
+        console.error(error.message);
+      }
     }
   }
 
@@ -65,8 +122,7 @@ export class Table extends CreateComponent {
 
         selectGroup(cells);
       } else {
-        select(element);
-        this.emit('table:select-cell', element);
+        this.selectCell(element);
       }
     }
   }
@@ -80,8 +136,7 @@ export class Table extends CreateComponent {
       const nextSelector = getNextSelector(event.key);
       const nextCell = this.root.el.querySelector(nextSelector);
 
-      select(nextCell);
-      this.emit('table:select-cell', nextCell);
+      this.selectCell(nextCell);
     }
   }
 
