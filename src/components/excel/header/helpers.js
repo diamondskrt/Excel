@@ -20,6 +20,11 @@ export const createStylesMap = (btnStyles) => {
         ? 'none'
         : 'underline',
     },
+    [iconEnums.FORMAT_STRIKETHROUGH]: {
+      textDecoration: btnStyles.textDecoration === 'line-through'
+        ? 'none'
+        : 'line-through',
+    },
   };
 
   return stylesMap;
