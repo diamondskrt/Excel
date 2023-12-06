@@ -12,6 +12,7 @@ const getButtons = (styles) => {
     { icon: iconEnums.FORMAT_BOLD, active: fontWeight === 'bold' },
     { icon: iconEnums.FORMAT_ITALIC, active: fontStyle === 'italic' },
     { icon: iconEnums.FORMAT_UNDERLINED, active: textDecoration === 'underline' },
+    { icon: iconEnums.FORMAT_STRIKETHROUGH, active: textDecoration === 'line-through' },
   ];
 };
 
