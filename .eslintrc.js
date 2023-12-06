@@ -11,6 +11,7 @@ module.exports = {
     browser: true,
     node: true,
     es2021: true,
+    jest: true,
   },
   rules: {
     'import/prefer-default-export': 'off',
