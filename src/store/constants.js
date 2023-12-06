@@ -3,11 +3,13 @@ export const actions = {
   tableResize: 'table-resize',
   cellInput: 'cell-input',
   toolbarBtnClick: 'toolbar-btn-click',
+  updateLastOpenDate: 'update-last-open-date',
 };
 
 export const initialState = {
-  appTitle: 'Новая таблица',
+  appTitle: 'Untitled',
   thCellSizes: [],
   thCellData: [],
   thCellStyles: [],
+  lastOpenDate: null,
 };

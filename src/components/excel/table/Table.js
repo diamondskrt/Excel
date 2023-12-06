@@ -140,7 +140,7 @@ export class Table extends Component {
     }
   }
 
-  destroy() {
-    super.destroy();
+  unmount() {
+    super.unmount();
   }
 }

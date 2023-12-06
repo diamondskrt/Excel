@@ -1,4 +1,4 @@
-import { Component } from './сomponent';
+import { Component } from './component';
 
 export class StatelessComponent extends Component {
   constructor(root, options) {

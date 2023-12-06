@@ -8,11 +8,6 @@ export class Component extends DomListener {
     this.store = options?.store;
     this.subscribeOnStates = options?.subscribeOnStates || [];
     this.unsubscribes = [];
-    this.beforeInit();
-  }
-
-  toHtml() {
-    return '';
   }
 
   emit(event, params) {
@@ -33,13 +28,11 @@ export class Component extends DomListener {
     this.store.dispatch(action);
   }
 
-  beforeInit() {}
-
   init() {
     this.initDomListeners();
   }
 
-  destroy() {
+  unmount() {
     this.removeDomListeners();
     this.unsubscribes.forEach((unsubscribe) => unsubscribe());
   }
