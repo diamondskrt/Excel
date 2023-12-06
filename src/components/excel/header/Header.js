@@ -1,4 +1,6 @@
 import { StatelessComponent } from '@/core';
+import { redirectToHomePage } from '@/helpers';
+import { storage } from '@/utils';
 import { actions } from '@/store/constants';
 import { createHeader } from './useHeader';
 import { createStylesMap } from './helpers';
@@ -10,6 +12,8 @@ export class Header extends StatelessComponent {
       listeners: ['click', 'input', 'keydown'],
       ...options,
     });
+
+    this.storageName = options.storageName;
 
     this.beforeInit();
   }
@@ -90,6 +94,24 @@ export class Header extends StatelessComponent {
 
       this.emit('toolbar-btn:click', stylesMap[icon]);
     }
+
+    const appbarBtn = event.target.closest('button[data-id="appbar-btn"]');
+
+    if (appbarBtn) {
+      const icon = appbarBtn.querySelector('i')?.textContent?.trim();
+
+      if (icon === 'logout') {
+        redirectToHomePage();
+      } else if (icon === 'delete') {
+        // eslint-disable-next-line no-alert
+        const decision = window.confirm('Вы действительно хотите удалить таблицу?');
+
+        if (!decision) return;
+
+        storage.remove(this.storageName);
+        redirectToHomePage();
+      }
+    }
   }
 
   input(event) {
@@ -144,7 +166,7 @@ export class Header extends StatelessComponent {
     }
   }
 
-  destroy() {
-    super.destroy();
+  unmount() {
+    super.unmount();
   }
 }

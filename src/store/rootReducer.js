@@ -1,8 +1,14 @@
 import { actions } from './constants';
 
-export const rootReducer = (state, action) => {
+export const rootReducer = (initialState, action) => {
+  const state = structuredClone(initialState);
+
   if (action.type === actions.appTitleEdit) {
     return { ...state, appTitle: action.data };
+  }
+
+  if (action.type === actions.updateLastOpenDate) {
+    return { ...state, lastOpenDate: action.data };
   }
 
   if (action.type === actions.tableResize) {

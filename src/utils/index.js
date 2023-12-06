@@ -16,6 +16,9 @@ export const storage = {
   get: (key) => JSON.parse(localStorage.getItem(key)),
   set: (options) => localStorage.setItem(options.key, JSON.stringify(options.data)),
   remove: (key) => localStorage.removeItem(key),
+  getAllItems: (includesKey) => Object.entries(localStorage)
+    .map(([key, value]) => ({ key, data: JSON.parse(value) }))
+    .filter(({ key }) => key.includes(includesKey)),
 };
 
 export const addCss = (element, styles) => {
@@ -23,6 +26,10 @@ export const addCss = (element, styles) => {
     const el = element;
     el.style[key] = styles[key];
   });
+};
+
+export const preventDefault = (e) => {
+  e.preventDefault();
 };
 
 export const camelCaseToDash = (string) => string.replace(/[A-Z]/g, (l) => `-${l.toLowerCase()}`);

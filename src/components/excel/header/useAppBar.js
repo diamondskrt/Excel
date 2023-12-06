@@ -5,17 +5,17 @@ export const createAppBar = (globalState) => {
     <div class="excel__header-appbar">
       <div contenteditable class="appbar-input" data-id="appbar-input">${appTitle}</div>
       <div class="appbar-actions">
-        <button type="button" class="btn btn-icon">
+        <button type="button" class="btn btn-icon" data-id="appbar-btn">
           <i class="material-symbols-rounded">
             delete
           </i>
         </button>
-        <button type="button" class="btn btn-icon">
+        <button type="button" class="btn btn-icon" data-id="appbar-btn">
           <i class="material-symbols-rounded">
             logout
           </i>
         </button>
-        <button type="button" class="btn btn-icon">
+        <button type="button" class="btn btn-icon" data-id="appbar-btn">
           <i class="material-symbols-rounded">
             dark_mode
           </i>
